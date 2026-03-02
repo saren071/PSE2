@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from pathlib import Path
-from typing import Any, Dict, List, Protocol
+from typing import TYPE_CHECKING, Any, Protocol
+
+if TYPE_CHECKING:
+    from pathlib import Path
 
 
 @dataclass
@@ -15,14 +17,14 @@ class GamePlugin(Protocol):
     id: str
     name: str
 
-    def get_default_locations(self) -> List[SaveLocation]:
+    def get_default_locations(self) -> list[SaveLocation]:
         ...
 
     def get_es3_key(self) -> str:
         ...
 
-    def parse_save(self, raw: Dict[str, Any]) -> Dict[str, Any]:
+    def parse_save(self, raw: dict[str, Any]) -> dict[str, Any]:
         ...
 
-    def serialize_save(self, structured: Dict[str, Any]) -> Dict[str, Any]:
+    def serialize_save(self, structured: dict[str, Any]) -> dict[str, Any]:
         ...
