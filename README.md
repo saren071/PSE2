@@ -34,30 +34,36 @@ You need Python 3.10+.
 ```bash
 pip install es3-modifier PySide6
 ```
+
 Clone the repository and make sure you’re in the folder that contains the pse2/ package:
 
 ```bash
 git clone https://github.com/nikidziuba/PSE2.git
 cd PSE2
 ```
+
 Running from source
 GUI (recommended)
 
 ```bash
 python -m pse2
 ```
+
 Or explicitly:
 
 ```bash
 python -m pse2 gui
 ```
+
 CLI
 
 ```bash
 python -m pse2 cli --set-money 1000 --set-xp 5000
 ```
+
 CLI options:
 
+```bash
     game – plugin id (default: phasmophobia, or list to list plugins)
 
     --file PATH – custom save file path (otherwise the default location is used)
@@ -65,44 +71,45 @@ CLI options:
     --set-money N
 
     --set-xp N
+```
 
 Usage – GUI
 
 - [ ] Select the save file
 
-    - Click Browse… to choose SaveFile.txt manually
+  - Click Browse… to choose SaveFile.txt manually
 
-    - Click Auto‑detect to fill in the default Phasmophobia path.
+  - Click Auto‑detect to fill in the default Phasmophobia path.
 
 - [ ] Click Load to load and parse the file.
 
 ---
+
 - [ ] On the Basic tab:
 
-    - Edit Money and Experience.
+  - Edit Money and Experience.
 
-    - If a field shows ERROR, that key wasn’t found and is locked to keep the save safe.
+  - If a field shows ERROR, that key wasn’t found and is locked to keep the save safe.
 
 - [ ] On the Advanced tab:
 
-    - Edit primitive values (int / float / string) directly.
+  - Edit primitive values (int / float / string) directly.
 
     - Use the True/False toggle for boolean values.
 
     - Click Edit for complex values (dicts, colors, etc.) to open the child dialog.
 
-        - In the child dialog:
+      - In the child dialog:
 
-                Each entry appears as Key | Value.
+        - Each entry appears as Key | Value.
 
-                Adjust values; numeric input is stored as float when possible.
+        - Adjust values; numeric input is stored as float when possible.
 
-                Click OK to apply changes back to the main save structure.
+        - Click OK to apply changes back to the main save structure.
 
 - [ ] Back on the Basic tab, click Save.
 
-    - A timestamped backup of the original save is created in the same directory.
-
+  - A timestamped backup of the original save is created in the same directory.
 
 Project structure
 
@@ -134,11 +141,11 @@ pse2/
 
 Safety notes
 
-    Editing game saves can corrupt data if used incorrectly.
+- Editing game saves can corrupt data if used incorrectly.
 
-    Always keep backups (PSE2 creates a backup automatically on save, but you should still archive important saves).
+- Always keep backups (PSE2 creates a backup automatically on save, but you should still archive important saves).
 
-    Use at your own risk; this project is not affiliated with or endorsed by the Phasmophobia developers.
+- Use at your own risk; this project is not affiliated with or endorsed by the Phasmophobia developers.
 
 Credits
 

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any
 
 from pse2.games.base import GamePlugin, SaveLocation
 from pse2.models.phasmo import Inventory, PlayerStats
@@ -12,7 +12,7 @@ class PhasmophobiaPlugin(GamePlugin):
     id = "phasmophobia"
     name = "Phasmophobia"
 
-    def get_default_locations(self) -> List[SaveLocation]:
+    def get_default_locations(self) -> list[SaveLocation]:
         userprofile = os.getenv("USERPROFILE", "")
         base = Path(userprofile) / "AppData" / "LocalLow" / "Kinetic Games" / "Phasmophobia"
         return [SaveLocation("Default Save", base / "SaveFile.txt")]
@@ -20,7 +20,7 @@ class PhasmophobiaPlugin(GamePlugin):
     def get_es3_key(self) -> str:
         return "t36gref9u84y7f43g"
 
-    def parse_save(self, raw: Dict[str, Any]) -> Dict[str, Any]:
+    def parse_save(self, raw: dict[str, Any]) -> dict[str, Any]:
         player = PlayerStats.from_raw(raw)
         inventory = Inventory.from_raw(raw)
         return {
@@ -29,10 +29,10 @@ class PhasmophobiaPlugin(GamePlugin):
             "raw": raw,
         }
 
-    def serialize_save(self, structured: Dict[str, Any]) -> Dict[str, Any]:
+    def serialize_save(self, structured: dict[str, Any]) -> dict[str, Any]:
         player: PlayerStats = structured["player"]
         inventory: Inventory = structured["inventory"]
-        base_raw: Dict[str, Any] = dict(structured.get("raw", {}))
+        base_raw: dict[str, Any] = dict(structured.get("raw", {}))
 
         base_raw.update(player.to_raw())
         base_raw.update(inventory.to_raw())

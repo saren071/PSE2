@@ -1,36 +1,35 @@
 from __future__ import annotations
 
 import sys
-import os
-
-
-
 from pathlib import Path
-from typing import Any, Dict
+from typing import TYPE_CHECKING, Any
 
-from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (
+    QAbstractItemView,
     QApplication,
-    QWidget,
-    QTabWidget,
-    QVBoxLayout,
+    QDialog,
+    QFileDialog,
     QHBoxLayout,
+    QHeaderView,
     QLabel,
     QLineEdit,
+    QMessageBox,
     QPushButton,
     QTableWidget,
     QTableWidgetItem,
-    QAbstractItemView,
-    QHeaderView,
-    QFileDialog,
-    QMessageBox,
-    QDialog,
+    QTabWidget,
+    QVBoxLayout,
+    QWidget,
 )
 
 from pse2.core_es3.io import ES3Backend
 from pse2.games.registry import get_all_plugins
-from pse2.models.phasmo import PlayerStats
+
+if TYPE_CHECKING:
+    from pse2.models.phasmo import PlayerStats
+
 
 def resource_path(relative: str) -> Path:
     if hasattr(sys, "_MEIPASS"):
@@ -42,7 +41,7 @@ def resource_path(relative: str) -> Path:
 
 
 class DictEditorDialog(QDialog):
-    def __init__(self, data: Dict[str, Any], parent: QWidget | None = None):
+    def __init__(self, data: dict[str, Any], parent: QWidget | None = None):
         super().__init__(parent)
         self.setWindowTitle("Edit value")
         self.resize(400, 300)
@@ -96,7 +95,7 @@ class DictEditorDialog(QDialog):
             self.table.setItem(row, 1, value_item)
 
     def _apply_changes(self):
-        updated: Dict[str, Any] = {}
+        updated: dict[str, Any] = {}
 
         for row in range(self.table.rowCount()):
             key_item = self.table.item(row, 0)
@@ -119,7 +118,7 @@ class DictEditorDialog(QDialog):
         self._apply_changes()
         super().accept()
 
-    def get_result(self) -> Dict[str, Any]:
+    def get_result(self) -> dict[str, Any]:
         if self._mode == "wrapped":
             return {
                 "__type": self._outer_type,
@@ -144,7 +143,7 @@ class MainWindow(QWidget):
 
         self.backend: ES3Backend | None = None
         self.save_path: Path | None = None
-        self.structured: Dict[str, Any] | None = None
+        self.structured: dict[str, Any] | None = None
 
         self._build_ui()
 

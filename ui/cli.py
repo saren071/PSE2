@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from pse2.core_es3.io import ES3Backend
-from pse2.games.registry import get_plugin_by_id, get_all_plugins
-from pse2.models.phasmo import PlayerStats
+from pse2.games.registry import get_all_plugins, get_plugin_by_id
+
+if TYPE_CHECKING:
+    from pse2.models.phasmo import PlayerStats
 
 
 def run_cli() -> None:

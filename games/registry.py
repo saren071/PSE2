@@ -1,12 +1,14 @@
 from __future__ import annotations
 
-from typing import List
+from typing import TYPE_CHECKING
 
-from pse2.games.base import GamePlugin
 from pse2.games.phasmophobia.plugin import PhasmophobiaPlugin
 
+if TYPE_CHECKING:
+    from pse2.games.base import GamePlugin
 
-def get_all_plugins() -> List[GamePlugin]:
+
+def get_all_plugins() -> list[GamePlugin]:
     return [
         PhasmophobiaPlugin(),
     ]
